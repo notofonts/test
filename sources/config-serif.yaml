@@ -1,9 +1,0 @@
-googleFonts: true
-sources:
-- NotoSerifTest.designspace
-axisOrder:
-  - wght
-familyName: Noto Serif Test
-includeSubsets:
-  - name: "GF Glyph Sets/GF-latin-core"
-    from: "Noto Serif"
