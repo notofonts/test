@@ -82,7 +82,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - run: pip3 install 'git+https://github.com/googlefonts/gftools#egg=gftools'
+      - run: pip3 install 'git+https://github.com/googlefonts/gftools@auto-isnoto#egg=gftools'
       - name: Generate / update upstream.yaml
         run: python3 -m gftools.actions.updateupstream ${{ needs.test_and_release.outputs.url }} --family "${{ needs.test_and_release.outputs.real_family_name }}"
       - uses: actions/checkout@v2
