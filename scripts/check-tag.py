@@ -1,6 +1,7 @@
 import os
 import sys
 from fontv.libfv import FontVersion
+from fontTools.ttLib import TTFont
 from glob import glob
 
 tag = sys.argv[1]
@@ -22,6 +23,7 @@ if not a_font:
 
 
 ttf_version = FontVersion(a_font[0]).version
+real_family_name = TTFont(a_font[0])["name"].getDebugName(1)
 
 if "Version "+version != ttf_version:
 	print(f"::error file=scripts/checktag.py::Trying to create release for version {version}, found font version {ttf_version}")
@@ -29,4 +31,5 @@ if "Version "+version != ttf_version:
 
 print("::set-output name=result::pass")
 print(f"::set-output name=family::{family}")
+print(f"::set-output name=real_family_name::{real_family_name}")
 sys.exit(0)

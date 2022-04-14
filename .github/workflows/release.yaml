@@ -13,6 +13,7 @@ jobs:
     name: Release Noto font
     outputs:
       url: ${{ steps.upload.outputs.browser_download_url }}
+      real_family_name: ${{ steps.check_tag.outputs.real_family_name }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
@@ -40,9 +41,9 @@ jobs:
           tag_name: ${{ github.ref_name }}
           release_name: ${{ github.ref_name }}
       - name: Tell user about release
-        run: echo '::notice file=sources/config.yaml,title=A new release ${{ github.ref_name }} has been created'
+        run: echo '::warning file=sources/config.yaml,title=A new release ${{ github.ref_name }} has been created'
       - name: Create release bundle
-        run: cd fonts; zip -r ../${{ github.ref_name }}.zip ${{ steps.check_tag.outputs.family}}/ ../*.txt
+        run: cd fonts; zip -x requirements.txt -r ../${{ github.ref_name }}.zip ${{ steps.check_tag.outputs.family}}/ ../*.txt
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         id: upload
@@ -83,7 +84,7 @@ jobs:
           python-version: 3.8
       - run: pip3 install 'git+https://github.com/googlefonts/gftools#egg=gftools'
       - name: Generate / update upstream.yaml
-        run: python3 -m gftools.actions.updateupstream ${{ needs.test_and_release.outputs.url }}
+        run: python3 -m gftools.actions.updateupstream ${{ needs.test_and_release.outputs.url }} --family "${{ needs.test_and_release.outputs.real_family_name }}"
       - uses: actions/checkout@v2
         name: Check out Google Fonts repository
         with:
