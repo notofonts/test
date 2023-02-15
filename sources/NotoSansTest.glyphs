@@ -12,7 +12,7 @@ id = m01;
 metricValues = (
 {
 over = 16;
-pos = 802;
+pos = 800;
 },
 {
 over = 16;
