@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>GFR - Glyphs</title>
+    
+    <style type="text/css">
+    
+
+        html{
+	  font-family: sans-serif;
+	}
+	.box-title{
+	  width: 100%;
+	  float: left;
+	  font-size: 8pt;
+	  font-weight: 700;
+	  border-top: 1px solid black;
+	  padding-top: 5px;
+	  margin-bottom: 10pt;
+	  display: block;
+	}
+	.box{
+	  margin-bottom: 20pt;
+	  width: 100%;
+	  float: left;
+	}
+	.box-text{
+		float: left;
+	}
+	
+	#nav{
+	  position: fixed;
+	  right: 20px;
+	  z-index: 100;
+	}
+	#font-toggle{
+	  display: block;
+	  font-weight: 700;
+	  cursor: pointer;
+	  -webkit-user-select: none; /* Safari */        
+	  -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* IE10+/Edge */
+	  user-select: none; /* Standard */
+	  text-align: center;
+	  color: white;
+	  background-color: black;
+	  width: 50px;
+	  display: block;
+	  padding: 10px;
+	}
+	.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+	}
+
+	.tooltip .tooltiptext {
+	font-family: sans-serif;
+	visibility: hidden;
+	width: 500px;
+	background-color: black;
+	color: #fff;
+	text-align: left;
+	font-size: 12pt;
+	line-height: 15pt;
+	border-radius: 6px;
+	padding: 5px 0;
+
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	}
+
+	.tooltip:hover .tooltiptext {
+	padding: 10px;
+	visibility: visible;
+	}
+	.tooltipleft {
+		float:left;
+		width: 249px;
+	}
+	.tooltipright {
+		float:right;
+		width:250px;
+	}
+
+			/* Stuff needed for the table differ */
+            body {
+                font-family: Helvetica;
+            }
+            .node {
+                font-family: courier;
+                cursor: pointer;
+                position: relative;
+                left: 30px;
+                padding: 5px;
+                display: block;
+                border: 1px dashed grey;
+            }
+            .header {
+            font-weight: bold;
+            }
+            .attrib-old{
+                color: red;
+                cursor: text;
+            }
+            .attrib-new{
+                color: green;
+                cursor: text;
+            }
+            .leaf {
+            font-weight: bold;
+            }
+            .old .cell .new {
+            	display:  none;
+            }
+            .new .cell .old {
+            	display:  none;
+            }
+            .both .cell .old {
+            	opacity: 0.75;
+            	color:  red;
+            }
+            .both .cell .new {
+            	opacity: 0.75;
+            	position: absolute;
+            	top: 0;
+            	color:  green;
+            }
+			.spacer {
+				display:block;
+				float:left;
+				width:100%;
+			}
+
+	  
+	    @font-face{
+    src: url(old-NotoSerifTest[wght].ttf);
+    font-family: "old font";
+    font-weight: 400 700;
+    
+    font-style: normal;
+}
+	  
+
+	  
+	    @font-face{
+    src: url(new-NotoSerifTest-Regular.ttf);
+    font-family: "new font";
+    font-weight: 400;
+    
+    font-style: normal;
+}
+	  
+
+	  
+
+	  
+	    .old-font-style{
+    font-family: "old font";
+    font-weight: 400.0;
+    
+    font-style: normal;
+}
+	  
+
+	  
+	    .new-font-style{
+    font-family: "new font";
+    font-weight: 400;
+    
+    font-style: normal;
+}
+	  
+
+	  
+	
+.cell{
+  z-index: -100;
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 5pt;
+  margin: 5pt;
+  width: 50pt;
+  line-height: 48.0px;
+}
+.cell-word{
+  z-index: -100;
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 5pt;
+  margin: 5pt;
+  line-height: 48.0px;
+}
+.cat-strings .cell {
+  clear: both;
+  position: static;
+  float: none;
+  text-align: left;
+}
+.box-title {
+  clear: both;
+}
+
+    </style>
+</head>
+<body>
+    
+    <div id="nav">
+        <div id="font-toggle">old</div>
+     </div>
+    
+    <div id="content">
+	<h2>
+<b>Diffenator</b>
+</h2>
+	
+  
+    <div class="box">
+    <div class="box-title">Tables</div>
+     
+<div class="node" >
+fvar
+  <div class="node" style="display:none">
+  axes
+    <div class="node" style="display:none">
+    wght
+      <div class="node" style="display:none">
+      minValue
+        <span class="attrib-before">400.0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      maxValue
+        <span class="attrib-before">700.0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      defaultValue
+        <span class="attrib-before">400.0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      axisName
+        <span class="attrib-before">Weight</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+  </div>
+  <div class="node" style="display:none">
+  instances
+    <div class="node" style="display:none">
+    Regular
+      <div class="node" style="display:none">
+      coordinates
+        <div class="node" style="display:none">
+        wght
+          <span class="attrib-before">400.0</span> <span class="attrib-after">None</span>
+        </div>
+      </div>
+      <div class="node" style="display:none">
+      flags
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+    <div class="node" style="display:none">
+    Medium
+      <div class="node" style="display:none">
+      coordinates
+        <div class="node" style="display:none">
+        wght
+          <span class="attrib-before">500.0</span> <span class="attrib-after">None</span>
+        </div>
+      </div>
+      <div class="node" style="display:none">
+      flags
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+    <div class="node" style="display:none">
+    SemiBold
+      <div class="node" style="display:none">
+      coordinates
+        <div class="node" style="display:none">
+        wght
+          <span class="attrib-before">600.0</span> <span class="attrib-after">None</span>
+        </div>
+      </div>
+      <div class="node" style="display:none">
+      flags
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+    <div class="node" style="display:none">
+    Bold
+      <div class="node" style="display:none">
+      coordinates
+        <div class="node" style="display:none">
+        wght
+          <span class="attrib-before">700.0</span> <span class="attrib-after">None</span>
+        </div>
+      </div>
+      <div class="node" style="display:none">
+      flags
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="node" >
+head
+  <div class="node" style="display:none">
+  modified
+    <span class="attrib-before">3738582233</span> <span class="attrib-after">3760956954</span>
+  </div>
+  <div class="node" style="display:none">
+  checkSumAdjustment
+    <span class="attrib-before">400239078</span> <span class="attrib-after">3499797195</span>
+  </div>
+</div>
+<div class="node" >
+maxp
+  <div class="node" style="display:none">
+  maxPoints
+    <span class="attrib-before">391</span> <span class="attrib-after">376</span>
+  </div>
+</div>
+<div class="node" >
+HVAR
+  <div class="node" style="display:none">
+  tableTag
+    <span class="attrib-before">HVAR</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  table
+    <div class="node" style="display:none">
+    Version
+      <span class="attrib-before">65536</span> <span class="attrib-after">None</span>
+    </div>
+    <div class="node" style="display:none">
+    VarStore
+      <div class="node" style="display:none">
+      Format
+        <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      VarRegionList
+        <div class="node" style="display:none">
+        RegionAxisCount
+          <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+        </div>
+        <div class="node" style="display:none">
+        RegionCount
+          <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+        </div>
+        <div class="node" style="display:none">
+        Region
+          <div class="node" style="display:none">
+          [0]
+            <div class="node" style="display:none">
+            VarRegionAxis
+              <div class="node" style="display:none">
+              [0]
+                <div class="node" style="display:none">
+                StartCoord
+                  <span class="attrib-before">0.0</span> <span class="attrib-after">None</span>
+                </div>
+                <div class="node" style="display:none">
+                PeakCoord
+                  <span class="attrib-before">1.0</span> <span class="attrib-after">None</span>
+                </div>
+                <div class="node" style="display:none">
+                EndCoord
+                  <span class="attrib-before">1.0</span> <span class="attrib-after">None</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="node" style="display:none">
+      VarDataCount
+        <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      VarData
+        <div class="node" style="display:none">
+        [0]
+          <div class="node" style="display:none">
+          ItemCount
+            <span class="attrib-before">3</span> <span class="attrib-after">None</span>
+          </div>
+          <div class="node" style="display:none">
+          NumShorts
+            <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+          </div>
+          <div class="node" style="display:none">
+          VarRegionCount
+            <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+          </div>
+          <div class="node" style="display:none">
+          VarRegionIndex
+            <div class="node" style="display:none">
+            [0]
+              <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+            </div>
+          </div>
+          <div class="node" style="display:none">
+          Item
+            <div class="node" style="display:none">
+            [0]
+              <div class="node" style="display:none">
+              [0]
+                <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+              </div>
+            </div>
+            <div class="node" style="display:none">
+            [1]
+              <div class="node" style="display:none">
+              [0]
+                <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+              </div>
+            </div>
+            <div class="node" style="display:none">
+            [2]
+              <div class="node" style="display:none">
+              [0]
+                <span class="attrib-before">114</span> <span class="attrib-after">None</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="node" >
+prep
+  <div class="node" style="display:none">
+  tableTag
+    <span class="attrib-before">prep</span> <span class="attrib-after">None</span>
+  </div>
+</div>
+<div class="node" >
+OS/2
+  <div class="node" style="display:none">
+  fsType
+    <span class="attrib-before">0</span> <span class="attrib-after">8</span>
+  </div>
+</div>
+<div class="node" >
+name
+  <div class="node" style="display:none">
+  (265, 3, 1, 1033)
+    <span class="attrib-before">SemiBold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (262, 3, 1, 1033)
+    <span class="attrib-before">SemiBold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (25, 3, 1, 1033)
+    <span class="attrib-before">NotoSerifTest</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (264, 1, 0, 0)
+    <span class="attrib-before">Medium</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (264, 3, 1, 1033)
+    <span class="attrib-before">Medium</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (259, 3, 1, 1033)
+    <span class="attrib-before">NotoSerifTest-Regular</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (261, 1, 0, 0)
+    <span class="attrib-before">Medium</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (256, 1, 0, 0)
+    <span class="attrib-before">Weight</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (262, 1, 0, 0)
+    <span class="attrib-before">SemiBold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (266, 3, 1, 1033)
+    <span class="attrib-before">Bold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (261, 3, 1, 1033)
+    <span class="attrib-before">Medium</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (258, 3, 1, 1033)
+    <span class="attrib-before">Bold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (25, 1, 0, 0)
+    <span class="attrib-before">NotoSerifTest</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (257, 1, 0, 0)
+    <span class="attrib-before">Regular</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (260, 3, 1, 1033)
+    <span class="attrib-before">NotoSerifTest-Bold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (266, 1, 0, 0)
+    <span class="attrib-before">Bold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (257, 3, 1, 1033)
+    <span class="attrib-before">Regular</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (258, 1, 0, 0)
+    <span class="attrib-before">Bold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (263, 3, 1, 1033)
+    <span class="attrib-before">Regular</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (265, 1, 0, 0)
+    <span class="attrib-before">SemiBold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (260, 1, 0, 0)
+    <span class="attrib-before">NotoSerifTest-Bold</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (256, 3, 1, 1033)
+    <span class="attrib-before">Weight</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (263, 1, 0, 0)
+    <span class="attrib-before">Regular</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  (259, 1, 0, 0)
+    <span class="attrib-before">NotoSerifTest-Regular</span> <span class="attrib-after">None</span>
+  </div>
+</div>
+<div class="node" >
+gasp
+  <div class="node" style="display:none">
+  tableTag
+    <span class="attrib-before">gasp</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  version
+    <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  gaspRange
+    <div class="node" style="display:none">
+    [65535]
+      <span class="attrib-before">15</span> <span class="attrib-after">None</span>
+    </div>
+  </div>
+</div>
+<div class="node" >
+STAT
+  <div class="node" style="display:none">
+  axis values
+    <div class="node" style="display:none">
+    Regular
+      <div class="node" style="display:none">
+      format
+        <span class="attrib-before">3</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      AxisIndex
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      Flags
+        <span class="attrib-before">2</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      Value
+        <span class="attrib-before">400.0</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+    <div class="node" style="display:none">
+    Medium
+      <div class="node" style="display:none">
+      format
+        <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      AxisIndex
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      Flags
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      Value
+        <span class="attrib-before">500.0</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+    <div class="node" style="display:none">
+    SemiBold
+      <div class="node" style="display:none">
+      format
+        <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      AxisIndex
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      Flags
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      Value
+        <span class="attrib-before">600.0</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+    <div class="node" style="display:none">
+    Bold
+      <div class="node" style="display:none">
+      format
+        <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      AxisIndex
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      Flags
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      Value
+        <span class="attrib-before">700.0</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+  </div>
+  <div class="node" style="display:none">
+  design axis records
+    <div class="node" style="display:none">
+    wght
+      <div class="node" style="display:none">
+      order
+        <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+      </div>
+      <div class="node" style="display:none">
+      AxisName
+        <span class="attrib-before">Weight</span> <span class="attrib-after">None</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="node" >
+gvar
+  <div class="node" style="display:none">
+  tableTag
+    <span class="attrib-before">gvar</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  version
+    <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  reserved
+    <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  axisCount
+    <span class="attrib-before">1</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  sharedTupleCount
+    <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  offsetToSharedTuples
+    <span class="attrib-before">28</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  glyphCount
+    <span class="attrib-before">3</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  flags
+    <span class="attrib-before">0</span> <span class="attrib-after">None</span>
+  </div>
+  <div class="node" style="display:none">
+  offsetToGlyphVariationData
+    <span class="attrib-before">28</span> <span class="attrib-after">None</span>
+  </div>
+</div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    <div class="box">
+      <div class="box-title">Misshapen user strings</div>
+      <span class="old-font-style" style="font-size: 32pt">
+        
+      </span>
+    </div>
+    
+
+    
+
+    </div>
+  
+
+    </div>
+</body>
+	<script>
+
+	POSITION = "old"
+	fontToggle = document.getElementById("font-toggle")
+	function switchFonts() {
+	  items = document.getElementsByClassName("box");
+	  console.log("Click from "+POSITION)
+	  
+	  if (POSITION === "old") {
+	  POSITION = "new"
+	  for (item of items) {
+	    item.firstElementChild.textContent = item.firstElementChild.textContent.replace("old", "new")
+            item.lastElementChild.className = item.lastElementChild.className.replace("old", "new")
+	    fontToggle.textContent = "new"
+	  }
+
+	  } else {
+	  POSITION = "old"
+	  for (item of items) {
+	    item.firstElementChild.textContent = item.firstElementChild.textContent.replace("new", "old")
+            item.lastElementChild.className = item.lastElementChild.className.replace("new", "old")
+	    fontToggle.textContent = "old"
+	  }
+	}
+	}
+	if (fontToggle !== null) {
+		fontToggle.addEventListener("click", switchFonts);
+	}
+
+    const divs = document.querySelectorAll('.node');
+    divs.forEach(el => el.addEventListener('click', event => {
+    var children = event.target.querySelectorAll(".node");
+    children.forEach(function(e) {
+        if (e.style.display === "none") {
+            e.style.display = "block";
+        } else {
+            e.style.display = "none";
+        }
+    })
+    }));
+    
+
+function wordBreaks() {
+  words = document.getElementsByClassName("cell-word")
+  res = []
+  prevTop = 0
+  for (i=0; i<words.length; i++) {
+      var word = words[i]
+      currentTop = word.getBoundingClientRect().top
+      if (currentTop > prevTop) {
+          res.push(i)
+      }
+      prevTop = currentTop
+  }
+  return res
+}
+
+async function insertBreaks() {
+  switchFonts()
+  await sleep(1)
+  breaksBefore = wordBreaks()
+  switchFonts()
+  await sleep(1)
+  breaksAfter = wordBreaks()
+
+
+  console.log(breaksBefore.length, breaksAfter.length)
+
+  if (breaksBefore.length >= breaksAfter.length) {
+    breaks = breaksBefore
+  } else {
+    breaks = breaksAfter
+  }
+
+  words = document.getElementsByClassName("cell-word")
+  breaks.forEach(function(i) {
+    if (i != 0) {
+      i = i
+    }
+    word = words[i]
+    spacer = document.createElement("div")
+    spacer.className = "spacer"
+    word.parentNode.insertBefore(spacer, word)
+  })
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+  
+insertBreaks()
+
+
+    </script>
+</html>
