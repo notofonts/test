@@ -1,8 +1,8 @@
 {
-.appVersion = "3109";
+.appVersion = "3180";
 .formatVersion = 3;
 DisplayStrings = (
-"๰"
+"๱๰"
 );
 date = "2022-04-03 17:04:08 +0000";
 familyName = "Noto Sans Test";
@@ -427,6 +427,36 @@ width = 1024;
 }
 );
 unicode = 3696;
+},
+{
+glyphname = uni0E71;
+lastChange = "2023-05-03 06:41:03 +0000";
+layers = (
+{
+layerId = m01;
+shapes = (
+{
+closed = 1;
+nodes = (
+(402,84,o),
+(498,180,o),
+(498,299,cs),
+(498,418,o),
+(402,514,o),
+(283,514,cs),
+(164,514,o),
+(68,418,o),
+(68,299,cs),
+(68,180,o),
+(164,84,o),
+(283,84,cs)
+);
+}
+);
+width = 566;
+}
+);
+unicode = 3697;
 }
 );
 instances = (
