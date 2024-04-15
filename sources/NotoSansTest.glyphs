@@ -522,5 +522,5 @@ value = "Noto is a trademark of Google Inc.";
 );
 unitsPerEm = 1000;
 versionMajor = 1;
-versionMinor = 1;
+versionMinor = 2;
 }
