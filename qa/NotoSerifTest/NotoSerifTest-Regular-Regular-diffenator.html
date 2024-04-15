@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>GFR - Glyphs</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <style type="text/css">
+    
+
+        html{
+	  font-family: sans-serif;
+	}
+    @font-face {
+        font-family: "Adobe NotDef";
+        src: url(https://cdn.jsdelivr.net/gh/adobe-fonts/adobe-notdef/AND-Regular.ttf);
+    }
+	.box-title{
+	  width: 100%;
+	  font-size: 8pt;
+	  font-weight: 700;
+	  border-top: 1px solid black;
+	  padding-top: 5px;
+	  margin-bottom: 10pt;
+	  display: block;
+	}
+	.box{
+	  margin-bottom: 20pt;
+	  width: 100%;
+	  float: left;
+	}
+	.box-text{
+	}
+	
+	#nav{
+	  position: fixed;
+	  right: 20px;
+	  z-index: 100;
+	}
+	#font-toggle{
+	}
+	.nav-item{
+		display: block;
+		cursor: pointer;
+		-webkit-user-select: none; /* Safari */        
+		-moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* IE10+/Edge */
+		user-select: none; /* Standard */
+		text-align: center;
+		color: white;
+		background-color: black;
+		display: block;
+		font-size: 9pt;
+		padding: 5px;
+		margin: 2px;
+	}
+	.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+	}
+
+	.tooltip .tooltiptext {
+	font-family: sans-serif;
+	visibility: hidden;
+	width: 500px;
+	background-color: black;
+	color: #fff;
+	text-align: left;
+	font-size: 12pt;
+	line-height: 15pt;
+	border-radius: 6px;
+	padding: 5px 0;
+
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	}
+
+	.tooltip:hover .tooltiptext {
+	padding: 10px;
+	visibility: visible;
+	}
+	.tooltipleft {
+		float:left;
+		width: 249px;
+	}
+	.tooltipright {
+		float:right;
+		width:250px;
+	}
+
+			/* Stuff needed for the table differ */
+            body {
+                font-family: Helvetica;
+            }
+            .node {
+                font-family: courier;
+                cursor: pointer;
+                position: relative;
+                left: 30px;
+                padding: 5px;
+                display: block;
+                border: 1px dashed grey;
+            }
+            .header {
+            font-weight: bold;
+            }
+            .attr-before{
+                color: red;
+                cursor: text;
+            }
+            .attr-after{
+                color: green;
+                cursor: text;
+            }
+            .leaf {
+            font-weight: bold;
+            }
+            .old .cell .new {
+            	display:  none;
+            }
+            .new .cell .old {
+            	display:  none;
+            }
+            .both .cell .old {
+            	opacity: 0.75;
+            	color:  red;
+            }
+            .both .cell .new {
+            	opacity: 0.75;
+            	position: absolute;
+            	top: 0;
+            	color:  green;
+            }
+			.spacer {
+				display:block;
+				float:left;
+				width:100%;
+			}
+
+	  
+	    @font-face{
+    src: url(old-NotoSerifTest[wght].ttf);
+    font-family: "old font";
+    font-weight: 400 700;
+    
+    font-style: normal;
+}
+	  
+
+	  
+	    @font-face{
+    src: url(new-NotoSerifTest-Regular.ttf);
+    font-family: "new font";
+    font-weight: 400;
+    
+    font-style: normal;
+}
+	  
+
+	  
+
+	  
+	    .old-Regular{
+    font-family: "old font", "Adobe NotDef";
+    font-weight: 400.0;
+    
+    font-style: normal;
+    font-variation-settings: "wght" 400.0;
+}
+	  
+
+	  
+	    .new-Regular{
+    font-family: "new font", "Adobe NotDef";
+    font-weight: 400;
+    
+    font-style: normal;
+    font-variation-settings: "wght" 400;
+}
+	  
+
+	  
+	
+.cell{
+  z-index: -100;
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 5pt;
+  margin: 5pt;
+  width: 50pt;
+  line-height: 48.0px;
+}
+.cell-word{
+  z-index: -100;
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 5pt;
+  margin: 5pt;
+  line-height: 48.0px;
+}
+.cat-strings .cell {
+  clear: both;
+  position: static;
+  float: none;
+  text-align: left;
+}
+.box-title {
+  clear: both;
+}
+
+
+	   #ot-panel {
+		max-height: 400px;
+		overflow-y: scroll;
+		background: white;
+		padding: 10px;
+		display: none;
+	   }
+    </style>
+</head>
+<body>
+    <div id="nav">
+		
+			<div class="nav-item" id="font-toggle">old</div>
+		
+			<div class="nav-item" id="ot-button">OT features</div>
+			<div id="ot-panel">
+			</div>
+		
+	</div>
+    <div id="content">
+	<h2>
+<b>Diffenator</b>
+</h2>
+	
+  
+    <div class="box">
+    <div class="box-title">Tables</div>
+      <div data-path="root" data-open="0" id="difftable"></div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    <div class="box">
+      <div class="box-title">Misshapen user strings</div>
+      <div class="box-text old-Regular" style="font-size: 32pt">
+        
+      </div>
+    </div>
+    
+
+    
+
+    </div>
+  
+<script>var fontdiff = {"gasp": {"tableTag": ["gasp", null], "version": [1, null], "gaspRange": {"65535": [15, null]}}, "maxp": {"maxPoints": [391, 376]}, "OS/2": {"fsType": [0, 8]}, "STAT": {"axis values": {"Regular": {"format": [3, null], "AxisIndex": [0, null], "Flags": [2, null], "Value": [400.0, null]}, "Medium": {"format": [1, null], "AxisIndex": [0, null], "Flags": [0, null], "Value": [500.0, null]}, "SemiBold": {"format": [1, null], "AxisIndex": [0, null], "Flags": [0, null], "Value": [600.0, null]}, "Bold": {"format": [1, null], "AxisIndex": [0, null], "Flags": [0, null], "Value": [700.0, null]}}, "design axis records": {"wght": {"order": [0, null], "AxisName": ["Weight", null]}}}, "head": {"modified": [3738582233, 3796019963], "checkSumAdjustment": [400239078, 3429669179]}, "name": {"264/1/0/0": ["Medium", null], "262/1/0/0": ["SemiBold", null], "266/3/1/1033": ["Bold", null], "259/3/1/1033": ["NotoSerifTest-Regular", null], "260/3/1/1033": ["NotoSerifTest-Bold", null], "265/1/0/0": ["SemiBold", null], "257/1/0/0": ["Regular", null], "264/3/1/1033": ["Medium", null], "257/3/1/1033": ["Regular", null], "256/3/1/1033": ["Weight", null], "25/1/0/0": ["NotoSerifTest", null], "261/3/1/1033": ["Medium", null], "263/1/0/0": ["Regular", null], "265/3/1/1033": ["SemiBold", null], "266/1/0/0": ["Bold", null], "258/3/1/1033": ["Bold", null], "256/1/0/0": ["Weight", null], "261/1/0/0": ["Medium", null], "25/3/1/1033": ["NotoSerifTest", null], "263/3/1/1033": ["Regular", null], "259/1/0/0": ["NotoSerifTest-Regular", null], "260/1/0/0": ["NotoSerifTest-Bold", null], "262/3/1/1033": ["SemiBold", null], "258/1/0/0": ["Bold", null]}, "prep": {"tableTag": ["prep", null]}, "glyf": {"axisTags": {"0": ["wght", null]}, "glyphs": {"uni0E70": {"Contour: 13": {"Node: 362": {"x": [94, 530]}, "Node: 363": {"x": [121, 499], "y": [226, 163]}, "Node: 366": {"x": [214, null], "y": [190, null], "on": [0, null]}, "Node: 372": {"x": [242, null], "y": [3, null], "on": [1, null]}, "Node: 350": {"x": [202, null], "y": [125, null], "on": [1, null]}, "Node: 357": {"x": [93, null], "y": [163, null], "on": [1, null]}, "Node: 360": {"x": [84, 596], "on": [1, 0], "y": [183, 212]}, "Node: 367": {"x": [214, null], "y": [160, null], "on": [1, null]}, "Node: 347": {"x": [66, null], "y": [91, null], "on": [0, null]}, "Node: 353": {"x": [182, null], "y": [216, null], "on": [0, null]}, "Node: 377": {"x": [196, null], "y": [29, null], "on": [0, null]}, "Node: 371": {"x": [239, null], "y": [3, null], "on": [1, null]}, "Node: 373": {"x": [242, null], "y": [-6, null], "on": [1, null]}, "Node: 345": {"x": [66, null], "y": [23, null], "on": [0, null]}, "Node: 368": {"x": [214, null], "y": [41, null], "on": [1, null]}, "Node: 344": {"x": [101, null], "y": [-10, null], "on": [0, null]}, "Node: 375": {"x": [202, null], "y": [39, null], "on": [1, null]}, "Node: 374": {"x": [205, null], "y": [-6, null], "on": [1, null]}, "Node: 351": {"x": [202, null], "y": [153, null], "on": [1, null]}, "Node: 376": {"x": [201, null], "y": [39, null], "on": [1, null]}, "Node: 352": {"x": [202, null], "y": [181, null], "on": [0, null]}, "Node: 364": {"x": [146, 497], "y": [226, 121]}, "Node: 348": {"x": [114, null], "y": [122, null], "on": [0, null]}, "Node: 354": {"x": [146, null], "y": [216, null], "on": [1, null]}, "Node: 370": {"x": [221, null], "y": [3, null], "on": [0, null]}, "Node: 346": {"x": [66, null], "y": [57, null], "on": [1, null]}, "Node: 343": {"x": [126, null], "y": [-10, null], "on": [1, null]}, "Node: 355": {"x": [114, null], "y": [216, null], "on": [0, null]}, "Node: 358": {"x": [89, 629], "on": [0, 1], "y": [163, 121]}, "Node: 356": {"x": [93, null], "y": [188, null], "on": [0, null]}, "Node: 369": {"x": [214, null], "y": [17, null], "on": [0, null]}, "Node: 379": {"x": [147, null], "y": [-10, null], "on": [0, null]}, "Node: 361": {"x": [84, 565], "on": [0, 1], "y": [192, 212]}, "Node: 349": {"x": [166, null], "y": [124, null], "on": [1, null]}, "Node: 359": {"x": [84, 628], "y": [173, 162]}, "Node: 365": {"x": [184, null], "y": [226, null], "on": [0, null]}, "Node: 378": {"x": [177, null], "y": [7, null], "on": [0, null]}}, "Contour: 2": {"Node: 59": {"x": [265, 505], "y": [337, 599]}, "Node: 77": {"x": [373, null], "y": [527, null], "on": [0, null]}, "Node: 86": {"x": [393, null], "y": [330, null], "on": [1, null]}, "Node: 54": {"x": [null, 493], "y": [null, 570], "on": [null, 0]}, "Node: 87": {"x": [393, null], "y": [461, null], "on": [1, null]}, "Node: 95": {"x": [283, null], "y": [345, null], "on": [0, null]}, "Node: 78": {"x": [403, null], "y": [497, null], "on": [0, null]}, "Node: 56": {"x": [236, 488], "y": [330, 584]}, "Node: 62": {"x": [273, 501], "on": [1, 0], "y": [571, 570]}, "Node: 58": {"x": [245, 497], "y": [337, 599]}, "Node: 94": {"x": [283, null], "y": [364, null], "on": [1, null]}, "Node: 76": {"x": [344, null], "y": [527, null], "on": [1, null]}, "Node: 83": {"x": [430, null], "y": [337, null], "on": [1, null]}, "Node: 97": {"x": [311, null], "y": [337, null], "on": [1, null]}, "Node: 98": {"x": [318, null], "y": [337, null], "on": [1, null]}, "Node: 92": {"x": [283, null], "y": [486, null], "on": [0, null]}, "Node: 96": {"x": [292, null], "y": [337, null], "on": [0, null]}, "Node: 89": {"x": [370, null], "y": [518, null], "on": [0, null]}, "Node: 63": {"x": [273, null], "y": [591, null], "on": [0, null]}, "Node: 64": {"x": [266, null], "y": [599, null], "on": [0, null]}, "Node: 99": {"x": [318, null], "y": [330, null], "on": [1, null]}, "Node: 71": {"x": [283, null], "y": [491, null], "on": [0, null]}, "Node: 75": {"x": [316, null], "y": [527, null], "on": [0, null]}, "Node: 68": {"x": [283, null], "y": [606, null], "on": [1, null]}, "Node: 90": {"x": [344, null], "y": [518, null], "on": [1, null]}, "Node: 79": {"x": [403, null], "y": [462, null], "on": [1, null]}, "Node: 72": {"x": [282, null], "y": [488, null], "on": [1, null]}, "Node: 91": {"x": [317, null], "y": [518, null], "on": [0, null]}, "Node: 67": {"x": [240, null], "y": [606, null], "on": [1, null]}, "Node: 65": {"x": [249, null], "y": [599, null], "on": [1, null]}, "Node: 69": {"x": [283, null], "y": [505, null], "on": [1, null]}, "Node: 73": {"x": [283, null], "y": [488, null], "on": [1, null]}, "Node: 70": {"x": [283, null], "y": [501, null], "on": [0, null]}, "Node: 88": {"x": [393, null], "y": [490, null], "on": [0, null]}, "Node: 53": {"x": [null, 497], "y": [null, 570], "on": [null, 1]}, "Node: 84": {"x": [437, null], "y": [337, null], "on": [1, null]}, "Node: 55": {"x": [null, 488], "y": [null, 575], "on": [null, 0]}, "Node: 66": {"x": [240, null], "y": [599, null], "on": [1, null]}, "Node: 74": {"x": [288, null], "y": [502, null], "on": [0, null]}, "Node: 85": {"x": [437, null], "y": [330, null], "on": [1, null]}, "Node: 81": {"x": [403, null], "y": [345, null], "on": [0, null]}, "Node: 82": {"x": [411, null], "y": [337, null], "on": [0, null]}, "Node: 80": {"x": [403, null], "y": [364, null], "on": [1, null]}, "Node: 61": {"x": [273, 505], "on": [1, 0], "y": [364, 575]}, "Node: 57": {"x": [236, 488], "on": [1, 0], "y": [337, 599]}, "Node: 93": {"x": [283, null], "y": [451, null], "on": [1, null]}, "Node: 60": {"x": [273, 505], "on": [0, 1], "y": [345, 584]}}, "Contour: 4": {"Node: 114": {"x": [null, 956], "y": [null, 501], "on": [null, 1]}, "Node: 151": {"x": [577, null], "y": [335, null], "on": [0, null]}, "Node: 95": {"x": [null, 851], "y": [null, 382], "on": [null, 0]}, "Node: 177": {"x": [565, null], "y": [473, null], "on": [0, null]}, "Node: 116": {"x": [null, 948], "y": [null, 485], "on": [null, 1]}, "Node: 144": {"x": [573, null], "y": [325, null], "on": [0, null]}, "Node: 162": {"x": [554, null], "y": [512, null], "on": [0, null]}, "Node: 160": {"x": [554, null], "y": [471, null], "on": [0, null]}, "Node: 94": {"x": [null, 851], "y": [null, 366], "on": [null, 1]}, "Node: 149": {"x": [559, null], "y": [382, null], "on": [1, null]}, "Node: 125": {"x": [null, 915], "y": [null, 438], "on": [null, 1]}, "Node: 158": {"x": [614, null], "y": [426, null], "on": [1, null]}, "Node: 126": {"x": [null, 944], "y": [null, 423], "on": [null, 0]}, "Node: 108": {"x": [null, 854], "y": [null, 492], "on": [null, 1]}, "Node: 175": {"x": [565, null], "y": [507, null], "on": [0, null]}, "Node: 109": {"x": [null, 854], "y": [null, 512], "on": [null, 0]}, "Node: 117": {"x": [null, 948], "y": [null, 510], "on": [null, 0]}, "Node: 156": {"x": [651, null], "y": [394, null], "on": [0, null]}, "Node: 102": {"x": [null, 951], "y": [null, 380], "on": [null, 1]}, "Node: 122": {"x": [null, 865], "y": [null, 492], "on": [null, 1]}, "Node: 110": {"x": [null, 883], "y": [null, 538], "on": [null, 0]}, "Node: 182": {"x": [662, null], "y": [379, null], "on": [1, null]}, "Node: 115": {"x": [null, 956], "y": [null, 485], "on": [null, 0]}, "Node: 178": {"x": [591, null], "y": [450, null], "on": [0, null]}, "Node: 100": {"x": [null, 928], "y": [null, 335], "on": [null, 0]}, "Node: 103": {"x": [null, 951], "y": [null, 394], "on": [null, 0]}, "Node: 167": {"x": [656, null], "y": [501, null], "on": [1, null]}, "Node: 164": {"x": [608, null], "y": [538, null], "on": [1, null]}, "Node: 152": {"x": [605, null], "y": [335, null], "on": [1, null]}, "Node: 169": {"x": [652, null], "y": [485, null], "on": [0, null]}, "Node: 118": {"x": [null, 927], "y": [null, 529], "on": [null, 0]}, "Node: 119": {"x": [null, 907], "y": [null, 529], "on": [null, 1]}, "Node: 163": {"x": [583, null], "y": [538, null], "on": [0, null]}, "Node: 150": {"x": [559, null], "y": [360, null], "on": [0, null]}, "Node: 148": {"x": [555, null], "y": [382, null], "on": [0, null]}, "Node: 93": {"x": [null, 851], "y": [null, 353], "on": [null, 0]}, "Node: 165": {"x": [634, null], "y": [538, null], "on": [0, null]}, "Node: 113": {"x": [null, 956], "y": [null, 514], "on": [null, 0]}, "Node: 127": {"x": [null, 962], "y": [null, 397], "on": [null, 0]}, "Node: 172": {"x": [627, null], "y": [529, null], "on": [0, null]}, "Node: 104": {"x": [null, 937], "y": [null, 414], "on": [null, 0]}, "Node: 180": {"x": [644, null], "y": [423, null], "on": [0, null]}, "Node: 124": {"x": [null, 891], "y": [null, 450], "on": [null, 0]}, "Node: 171": {"x": [648, null], "y": [510, null], "on": [0, null]}, "Node: 112": {"x": [null, 934], "y": [null, 538], "on": [null, 0]}, "Node: 101": {"x": [null, 951], "y": [null, 362], "on": [null, 0]}, "Node: 128": {"x": [null, 962], "y": [null, 379], "on": [null, 1]}, "Node: 98": {"x": [null, 877], "y": [null, 335], "on": [null, 0]}, "Node: 176": {"x": [565, null], "y": [492, null], "on": [1, null]}, "Node: 155": {"x": [651, null], "y": [380, null], "on": [1, null]}, "Node: 97": {"x": [null, 859], "y": [null, 360], "on": [null, 0]}, "Node: 129": {"x": [null, 962], "y": [null, 355], "on": [null, 0]}, "Node: 179": {"x": [615, null], "y": [438, null], "on": [1, null]}, "Node: 92": {"x": [null, 873], "y": [null, 325], "on": [null, 0]}, "Node: 154": {"x": [651, null], "y": [362, null], "on": [0, null]}, "Node: 96": {"x": [null, 859], "y": [null, 382], "on": [null, 1]}, "Node: 121": {"x": [null, 865], "y": [null, 507], "on": [null, 0]}, "Node: 173": {"x": [607, null], "y": [529, null], "on": [1, null]}, "Node: 168": {"x": [656, null], "y": [494, null], "on": [0, null]}, "Node: 99": {"x": [null, 905], "y": [null, 335], "on": [null, 1]}, "Node: 159": {"x": [580, null], "y": [444, null], "on": [0, null]}, "Node: 111": {"x": [null, 908], "y": [null, 538], "on": [null, 1]}, "Node: 120": {"x": [null, 886], "y": [null, 529], "on": [null, 0]}, "Node: 166": {"x": [656, null], "y": [514, null], "on": [0, null]}, "Node: 181": {"x": [662, null], "y": [397, null], "on": [0, null]}, "Node: 91": {"x": [null, 905], "y": [null, 325], "on": [null, 1]}, "Node: 145": {"x": [551, null], "y": [353, null], "on": [0, null]}, "Node: 153": {"x": [628, null], "y": [335, null], "on": [0, null]}, "Node: 143": {"x": [605, null], "y": [325, null], "on": [1, null]}, "Node: 146": {"x": [551, null], "y": [366, null], "on": [1, null]}, "Node: 183": {"x": [662, null], "y": [355, null], "on": [0, null]}, "Node: 161": {"x": [554, null], "y": [492, null], "on": [1, null]}, "Node: 130": {"x": [null, 930], "y": [null, 325], "on": [null, 0]}, "Node: 147": {"x": [551, null], "y": [374, null], "on": [0, null]}, "Node: 123": {"x": [null, 865], "y": [null, 473], "on": [null, 0]}, "Node: 105": {"x": [null, 914], "y": [null, 426], "on": [null, 1]}, "Node: 157": {"x": [637, null], "y": [414, null], "on": [0, null]}, "Node: 184": {"x": [630, null], "y": [325, null], "on": [0, null]}, "Node: 170": {"x": [648, null], "y": [485, null], "on": [1, null]}, "Node: 174": {"x": [586, null], "y": [529, null], "on": [0, null]}, "Node: 106": {"x": [null, 880], "y": [null, 444], "on": [null, 0]}, "Node: 107": {"x": [null, 854], "y": [null, 471], "on": [null, 0]}}, "Contour: 6": {"Node: 182": {"x": [null, 463], "y": [null, 526], "on": [null, 1]}, "Node: 211": {"x": [505, null], "y": [599, null], "on": [0, null]}, "Node: 180": {"x": [null, 470], "y": [null, 519], "on": [null, 1]}, "Node: 171": {"x": [null, 455], "y": [null, 334], "on": [null, 1]}, "Node: 204": {"x": [497, null], "y": [570, null], "on": [1, null]}, "Node: 178": {"x": [null, 494], "y": [null, 511], "on": [null, 0]}, "Node: 177": {"x": [null, 494], "y": [null, 491], "on": [null, 1]}, "Node: 176": {"x": [null, 494], "y": [null, 368], "on": [null, 1]}, "Node: 214": {"x": [501, null], "y": [570, null], "on": [0, null]}, "Node: 187": {"x": [null, 531], "y": [null, 341], "on": [null, 1]}, "Node: 179": {"x": [null, 486], "y": [null, 519], "on": [null, 0]}, "Node: 205": {"x": [493, null], "y": [570, null], "on": [0, null]}, "Node: 213": {"x": [505, null], "y": [575, null], "on": [0, null]}, "Node: 173": {"x": [null, 466], "y": [null, 341], "on": [null, 1]}, "Node: 189": {"x": [null, 542], "y": [null, 334], "on": [null, 1]}, "Node: 210": {"x": [497, null], "y": [599, null], "on": [1, null]}, "Node: 208": {"x": [488, null], "y": [592, null], "on": [0, null]}, "Node: 206": {"x": [488, null], "y": [575, null], "on": [0, null]}, "Node: 185": {"x": [null, 504], "y": [null, 349], "on": [null, 0]}, "Node: 175": {"x": [null, 494], "y": [null, 349], "on": [null, 0]}, "Node: 181": {"x": [null, 463], "y": [null, 519], "on": [null, 1]}, "Node: 184": {"x": [null, 504], "y": [null, 368], "on": [null, 1]}, "Node: 172": {"x": [null, 455], "y": [null, 341], "on": [null, 1]}, "Node: 212": {"x": [505, null], "y": [584, null], "on": [1, null]}, "Node: 188": {"x": [null, 542], "y": [null, 341], "on": [null, 1]}, "Node: 174": {"x": [null, 485], "y": [null, 341], "on": [null, 0]}, "Node: 209": {"x": [493, null], "y": [599, null], "on": [0, null]}, "Node: 207": {"x": [488, null], "y": [584, null], "on": [1, null]}, "Node: 183": {"x": [null, 504], "y": [null, 526], "on": [null, 1]}, "Node: 186": {"x": [null, 512], "y": [null, 341], "on": [null, 0]}}, "Contour: 9": {"Node: 248": {"x": [null, 869], "y": [null, 249], "on": [null, 1]}, "Node: 251": {"x": [null, 916], "y": [null, 195], "on": [null, 1]}, "Node: 258": {"x": [null, 913], "y": [null, 12], "on": [null, 0]}, "Node: 286": {"x": [755, null], "y": [341, null], "on": [1, null]}, "Node: 294": {"x": [770, null], "y": [519, null], "on": [1, null]}, "Node: 236": {"x": [null, 898], "y": [null, 2], "on": [null, 1]}, "Node: 302": {"x": [842, null], "y": [341, null], "on": [1, null]}, "Node: 261": {"x": [null, 913], "y": [null, 3], "on": [null, 0]}, "Node: 244": {"x": [null, 852], "y": [null, 210], "on": [null, 1]}, "Node: 257": {"x": [null, 904], "y": [null, 11], "on": [null, 0]}, "Node: 297": {"x": [804, null], "y": [526, null], "on": [1, null]}, "Node: 237": {"x": [null, 876], "y": [null, 2], "on": [null, 0]}, "Node: 238": {"x": [null, 858], "y": [null, 27], "on": [null, 0]}, "Node: 300": {"x": [812, null], "y": [341, null], "on": [0, null]}, "Node: 285": {"x": [755, null], "y": [334, null], "on": [1, null]}, "Node: 245": {"x": [null, 856], "y": [null, 213], "on": [null, 0]}, "Node: 241": {"x": [null, 829], "y": [null, 195], "on": [null, 1]}, "Node: 288": {"x": [785, null], "y": [341, null], "on": [0, null]}, "Node: 249": {"x": [null, 869], "y": [null, 204], "on": [null, 1]}, "Node: 303": {"x": [842, null], "y": [334, null], "on": [1, null]}, "Node: 260": {"x": [null, 919], "y": [null, 4], "on": [null, 1]}, "Node: 243": {"x": [null, 846], "y": [null, 202], "on": [null, 0]}, "Node: 255": {"x": [null, 882], "y": [null, 11], "on": [null, 0]}, "Node: 240": {"x": [null, 858], "y": [null, 195], "on": [null, 1]}, "Node: 253": {"x": [null, 869], "y": [null, 55], "on": [null, 1]}, "Node: 247": {"x": [null, 861], "y": [null, 249], "on": [null, 1]}, "Node: 242": {"x": [null, 829], "y": [null, 202], "on": [null, 1]}, "Node: 296": {"x": [763, null], "y": [526, null], "on": [1, null]}, "Node: 259": {"x": [null, 919], "y": [null, 13], "on": [null, 1]}, "Node: 298": {"x": [804, null], "y": [368, null], "on": [1, null]}, "Node: 287": {"x": [766, null], "y": [341, null], "on": [1, null]}, "Node: 290": {"x": [794, null], "y": [368, null], "on": [1, null]}, "Node: 250": {"x": [null, 916], "y": [null, 204], "on": [null, 1]}, "Node: 291": {"x": [794, null], "y": [491, null], "on": [1, null]}, "Node: 254": {"x": [null, 869], "y": [null, 31], "on": [null, 0]}, "Node: 289": {"x": [794, null], "y": [349, null], "on": [0, null]}, "Node: 292": {"x": [794, null], "y": [511, null], "on": [0, null]}, "Node: 299": {"x": [804, null], "y": [349, null], "on": [0, null]}, "Node: 256": {"x": [null, 898], "y": [null, 11], "on": [null, 1]}, "Node: 246": {"x": [null, 861], "y": [null, 231], "on": [null, 0]}, "Node: 301": {"x": [831, null], "y": [341, null], "on": [1, null]}, "Node: 252": {"x": [null, 869], "y": [null, 195], "on": [null, 1]}, "Node: 262": {"x": [null, 903], "y": [null, 2], "on": [null, 0]}, "Node: 295": {"x": [763, null], "y": [519, null], "on": [1, null]}, "Node: 239": {"x": [null, 858], "y": [null, 58], "on": [null, 1]}, "Node: 293": {"x": [786, null], "y": [519, null], "on": [0, null]}}, "Contour: 3": {"Node: 114": {"x": [791, null], "y": [66, null], "on": [0, null]}, "Node: 77": {"x": [null, 224], "y": [null, 590], "on": [null, 1]}, "Node: 104": {"x": [680, null], "y": [35, null], "on": [1, null]}, "Node: 124": {"x": [797, null], "y": [199, null], "on": [0, null]}, "Node: 86": {"x": [null, 140], "y": [null, 349], "on": [null, 0]}, "Node: 112": {"x": [791, null], "y": [31, null], "on": [0, null]}, "Node: 101": {"x": [716, null], "y": [-10, null], "on": [0, null]}, "Node: 128": {"x": [788, null], "y": [168, null], "on": [1, null]}, "Node: 87": {"x": [null, 147], "y": [null, 337], "on": [null, 0]}, "Node: 132": {"x": [719, null], "y": [216, null], "on": [0, null]}, "Node: 116": {"x": [750, null], "y": [102, null], "on": [1, null]}, "Node: 137": {"x": [751, null], "y": [115, null], "on": [1, null]}, "Node: 134": {"x": [696, null], "y": [175, null], "on": [1, null]}, "Node: 78": {"x": [null, 226], "y": [null, 535], "on": [null, 1]}, "Node: 142": {"x": [768, null], "y": [-10, null], "on": [0, null]}, "Node: 129": {"x": [788, null], "y": [195, null], "on": [0, null]}, "Node: 76": {"x": [null, 47], "y": [null, 590], "on": [null, 1]}, "Node: 83": {"x": [null, 196], "y": [null, 581], "on": [null, 1]}, "Node: 125": {"x": [797, null], "y": [185, null], "on": [1, null]}, "Node: 121": {"x": [716, null], "y": [226, null], "on": [0, null]}, "Node: 126": {"x": [797, null], "y": [177, null], "on": [0, null]}, "Node: 131": {"x": [742, null], "y": [216, null], "on": [1, null]}, "Node: 89": {"x": [null, 184], "y": [null, 337], "on": [null, 1]}, "Node: 63": {"x": [null, 86], "y": [null, 330], "on": [null, 1]}, "Node: 64": {"x": [null, 86], "y": [null, 337], "on": [null, 1]}, "Node: 111": {"x": [765, null], "y": [1, null], "on": [0, null]}, "Node: 108": {"x": [689, null], "y": [28, null], "on": [0, null]}, "Node: 120": {"x": [684, null], "y": [198, null], "on": [0, null]}, "Node: 141": {"x": [803, null], "y": [23, null], "on": [0, null]}, "Node: 71": {"x": [null, 62], "y": [null, 581], "on": [null, 0]}, "Node: 109": {"x": [709, null], "y": [1, null], "on": [0, null]}, "Node: 75": {"x": [null, 45], "y": [null, 535], "on": [null, 1]}, "Node: 68": {"x": [null, 130], "y": [null, 369], "on": [null, 1]}, "Node: 90": {"x": [null, 184], "y": [null, 330], "on": [null, 1]}, "Node: 135": {"x": [696, null], "y": [155, null], "on": [0, null]}, "Node: 139": {"x": [803, null], "y": [70, null], "on": [0, null]}, "Node: 79": {"x": [null, 219], "y": [null, 535], "on": [null, 1]}, "Node: 72": {"x": [null, 53], "y": [null, 571], "on": [null, 0]}, "Node: 117": {"x": [713, null], "y": [122, null], "on": [0, null]}, "Node: 67": {"x": [null, 130], "y": [null, 349], "on": [null, 0]}, "Node: 65": {"x": [null, 110], "y": [null, 337], "on": [null, 1]}, "Node: 102": {"x": [690, null], "y": [5, null], "on": [0, null]}, "Node: 69": {"x": [null, 130], "y": [null, 581], "on": [null, 1]}, "Node: 122": {"x": [743, null], "y": [226, null], "on": [1, null]}, "Node: 110": {"x": [740, null], "y": [1, null], "on": [1, null]}, "Node: 73": {"x": [null, 53], "y": [null, 556], "on": [null, 1]}, "Node: 70": {"x": [null, 75], "y": [null, 581], "on": [null, 1]}, "Node: 115": {"x": [776, null], "y": [89, null], "on": [0, null]}, "Node: 130": {"x": [764, null], "y": [216, null], "on": [0, null]}, "Node: 88": {"x": [null, 160], "y": [null, 337], "on": [null, 1]}, "Node: 84": {"x": [null, 140], "y": [null, 581], "on": [null, 1]}, "Node: 100": {"x": [740, null], "y": [-10, null], "on": [1, null]}, "Node: 103": {"x": [680, null], "y": [26, null], "on": [0, null]}, "Node: 66": {"x": [null, 124], "y": [null, 337], "on": [null, 0]}, "Node: 106": {"x": [685, null], "y": [53, null], "on": [0, null]}, "Node: 123": {"x": [772, null], "y": [226, null], "on": [0, null]}, "Node: 105": {"x": [680, null], "y": [44, null], "on": [0, null]}, "Node: 118": {"x": [684, null], "y": [152, null], "on": [0, null]}, "Node: 119": {"x": [684, null], "y": [175, null], "on": [1, null]}, "Node: 74": {"x": [null, 53], "y": [null, 535], "on": [null, 1]}, "Node: 85": {"x": [null, 140], "y": [null, 369], "on": [null, 1]}, "Node: 81": {"x": [null, 217], "y": [null, 571], "on": [null, 0]}, "Node: 82": {"x": [null, 210], "y": [null, 581], "on": [null, 0]}, "Node: 80": {"x": [null, 218], "y": [null, 556], "on": [null, 1]}, "Node: 138": {"x": [783, null], "y": [99, null], "on": [0, null]}, "Node: 140": {"x": [803, null], "y": [50, null], "on": [1, null]}, "Node: 133": {"x": [696, null], "y": [192, null], "on": [0, null]}, "Node: 127": {"x": [793, null], "y": [168, null], "on": [0, null]}, "Node: 113": {"x": [791, null], "y": [51, null], "on": [1, null]}, "Node: 136": {"x": [725, null], "y": [129, null], "on": [0, null]}, "Node: 107": {"x": [689, null], "y": [53, null], "on": [1, null]}}, "Contour: 7": {"Node: 197": {"x": [null, 794], "y": [null, 511], "on": [null, 0]}, "Node: 236": {"x": [140, null], "y": [581, null], "on": [1, null]}, "Node: 233": {"x": [217, null], "y": [571, null], "on": [0, null]}, "Node: 216": {"x": [86, null], "y": [337, null], "on": [1, null]}, "Node: 229": {"x": [224, null], "y": [590, null], "on": [1, null]}, "Node: 193": {"x": [null, 785], "y": [null, 341], "on": [null, 0]}, "Node: 230": {"x": [226, null], "y": [535, null], "on": [1, null]}, "Node: 198": {"x": [null, 786], "y": [null, 519], "on": [null, 0]}, "Node: 222": {"x": [75, null], "y": [581, null], "on": [1, null]}, "Node: 191": {"x": [null, 755], "y": [null, 341], "on": [null, 1]}, "Node: 228": {"x": [47, null], "y": [590, null], "on": [1, null]}, "Node: 237": {"x": [140, null], "y": [369, null], "on": [1, null]}, "Node: 238": {"x": [140, null], "y": [349, null], "on": [0, null]}, "Node: 203": {"x": [null, 804], "y": [null, 368], "on": [null, 1]}, "Node: 195": {"x": [null, 794], "y": [null, 368], "on": [null, 1]}, "Node: 202": {"x": [null, 804], "y": [null, 526], "on": [null, 1]}, "Node: 224": {"x": [53, null], "y": [571, null], "on": [0, null]}, "Node: 226": {"x": [53, null], "y": [535, null], "on": [1, null]}, "Node: 241": {"x": [184, null], "y": [337, null], "on": [1, null]}, "Node: 218": {"x": [124, null], "y": [337, null], "on": [0, null]}, "Node: 207": {"x": [null, 842], "y": [null, 341], "on": [null, 1]}, "Node: 220": {"x": [130, null], "y": [369, null], "on": [1, null]}, "Node: 219": {"x": [130, null], "y": [349, null], "on": [0, null]}, "Node: 240": {"x": [160, null], "y": [337, null], "on": [1, null]}, "Node: 199": {"x": [null, 770], "y": [null, 519], "on": [null, 1]}, "Node: 204": {"x": [null, 804], "y": [null, 349], "on": [null, 0]}, "Node: 242": {"x": [184, null], "y": [330, null], "on": [1, null]}, "Node: 217": {"x": [110, null], "y": [337, null], "on": [1, null]}, "Node: 200": {"x": [null, 763], "y": [null, 519], "on": [null, 1]}, "Node: 225": {"x": [53, null], "y": [556, null], "on": [1, null]}, "Node: 190": {"x": [null, 755], "y": [null, 334], "on": [null, 1]}, "Node: 194": {"x": [null, 794], "y": [null, 349], "on": [null, 0]}, "Node: 215": {"x": [86, null], "y": [330, null], "on": [1, null]}, "Node: 196": {"x": [null, 794], "y": [null, 491], "on": [null, 1]}, "Node: 192": {"x": [null, 766], "y": [null, 341], "on": [null, 1]}, "Node: 205": {"x": [null, 812], "y": [null, 341], "on": [null, 0]}, "Node: 208": {"x": [null, 842], "y": [null, 334], "on": [null, 1]}, "Node: 223": {"x": [62, null], "y": [581, null], "on": [0, null]}, "Node: 234": {"x": [210, null], "y": [581, null], "on": [0, null]}, "Node: 206": {"x": [null, 831], "y": [null, 341], "on": [null, 1]}, "Node: 221": {"x": [130, null], "y": [581, null], "on": [1, null]}, "Node: 232": {"x": [218, null], "y": [556, null], "on": [1, null]}, "Node: 227": {"x": [45, null], "y": [535, null], "on": [1, null]}, "Node: 201": {"x": [null, 763], "y": [null, 526], "on": [null, 1]}, "Node: 235": {"x": [196, null], "y": [581, null], "on": [1, null]}, "Node: 231": {"x": [219, null], "y": [535, null], "on": [1, null]}, "Node: 239": {"x": [147, null], "y": [337, null], "on": [0, null]}}, "Contour: 8": {"Node: 248": {"x": [855, null], "y": [382, null], "on": [0, null]}, "Node: 273": {"x": [907, null], "y": [529, null], "on": [1, null]}, "Node: 251": {"x": [877, null], "y": [335, null], "on": [0, null]}, "Node: 258": {"x": [914, null], "y": [426, null], "on": [1, null]}, "Node: 278": {"x": [891, null], "y": [450, null], "on": [0, null]}, "Node: 282": {"x": [962, null], "y": [379, null], "on": [1, null]}, "Node: 281": {"x": [962, null], "y": [397, null], "on": [0, null]}, "Node: 209": {"x": [null, 428], "y": [null, 2], "on": [null, 1]}, "Node: 233": {"x": [null, 449], "y": [null, 4], "on": [null, 1]}, "Node: 269": {"x": [952, null], "y": [485, null], "on": [0, null]}, "Node: 261": {"x": [854, null], "y": [492, null], "on": [1, null]}, "Node: 244": {"x": [873, null], "y": [325, null], "on": [0, null]}, "Node: 276": {"x": [865, null], "y": [492, null], "on": [1, null]}, "Node: 279": {"x": [915, null], "y": [438, null], "on": [1, null]}, "Node: 257": {"x": [937, null], "y": [414, null], "on": [0, null]}, "Node: 216": {"x": [null, 376], "y": [null, 202], "on": [null, 0]}, "Node: 229": {"x": [null, 428], "y": [null, 11], "on": [null, 1]}, "Node: 214": {"x": [null, 359], "y": [null, 195], "on": [null, 1]}, "Node: 230": {"x": [null, 434], "y": [null, 11], "on": [null, 0]}, "Node: 222": {"x": [null, 399], "y": [null, 204], "on": [null, 1]}, "Node: 228": {"x": [null, 412], "y": [null, 11], "on": [null, 0]}, "Node: 277": {"x": [865, null], "y": [473, null], "on": [0, null]}, "Node: 245": {"x": [851, null], "y": [353, null], "on": [0, null]}, "Node: 224": {"x": [null, 446], "y": [null, 195], "on": [null, 1]}, "Node: 226": {"x": [null, 399], "y": [null, 55], "on": [null, 1]}, "Node: 249": {"x": [859, null], "y": [382, null], "on": [1, null]}, "Node: 218": {"x": [null, 386], "y": [null, 213], "on": [null, 0]}, "Node: 260": {"x": [854, null], "y": [471, null], "on": [0, null]}, "Node: 243": {"x": [905, null], "y": [325, null], "on": [1, null]}, "Node: 270": {"x": [948, null], "y": [485, null], "on": [1, null]}, "Node: 220": {"x": [null, 391], "y": [null, 249], "on": [null, 1]}, "Node: 274": {"x": [886, null], "y": [529, null], "on": [0, null]}, "Node: 265": {"x": [934, null], "y": [538, null], "on": [0, null]}, "Node: 255": {"x": [951, null], "y": [380, null], "on": [1, null]}, "Node: 283": {"x": [962, null], "y": [355, null], "on": [0, null]}, "Node: 275": {"x": [865, null], "y": [507, null], "on": [0, null]}, "Node: 219": {"x": [null, 391], "y": [null, 231], "on": [null, 0]}, "Node: 272": {"x": [927, null], "y": [529, null], "on": [0, null]}, "Node: 253": {"x": [928, null], "y": [335, null], "on": [0, null]}, "Node: 284": {"x": [930, null], "y": [325, null], "on": [0, null]}, "Node: 247": {"x": [851, null], "y": [374, null], "on": [0, null]}, "Node: 280": {"x": [944, null], "y": [423, null], "on": [0, null]}, "Node: 211": {"x": [null, 388], "y": [null, 27], "on": [null, 0]}, "Node: 217": {"x": [null, 382], "y": [null, 210], "on": [null, 1]}, "Node: 225": {"x": [null, 399], "y": [null, 195], "on": [null, 1]}, "Node: 259": {"x": [880, null], "y": [444, null], "on": [0, null]}, "Node: 263": {"x": [883, null], "y": [538, null], "on": [0, null]}, "Node: 271": {"x": [948, null], "y": [510, null], "on": [0, null]}, "Node: 215": {"x": [null, 359], "y": [null, 202], "on": [null, 1]}, "Node: 250": {"x": [859, null], "y": [360, null], "on": [0, null]}, "Node: 266": {"x": [956, null], "y": [514, null], "on": [0, null]}, "Node: 213": {"x": [null, 388], "y": [null, 195], "on": [null, 1]}, "Node: 267": {"x": [956, null], "y": [501, null], "on": [1, null]}, "Node: 264": {"x": [908, null], "y": [538, null], "on": [1, null]}, "Node: 210": {"x": [null, 406], "y": [null, 2], "on": [null, 0]}, "Node: 254": {"x": [951, null], "y": [362, null], "on": [0, null]}, "Node: 223": {"x": [null, 446], "y": [null, 204], "on": [null, 1]}, "Node: 234": {"x": [null, 443], "y": [null, 3], "on": [null, 0]}, "Node: 256": {"x": [951, null], "y": [394, null], "on": [0, null]}, "Node: 221": {"x": [null, 399], "y": [null, 249], "on": [null, 1]}, "Node: 212": {"x": [null, 388], "y": [null, 58], "on": [null, 1]}, "Node: 246": {"x": [851, null], "y": [366, null], "on": [1, null]}, "Node: 252": {"x": [905, null], "y": [335, null], "on": [1, null]}, "Node: 232": {"x": [null, 449], "y": [null, 13], "on": [null, 1]}, "Node: 227": {"x": [null, 399], "y": [null, 31], "on": [null, 0]}, "Node: 268": {"x": [956, null], "y": [494, null], "on": [0, null]}, "Node: 262": {"x": [854, null], "y": [512, null], "on": [0, null]}, "Node: 235": {"x": [null, 433], "y": [null, 2], "on": [null, 0]}, "Node: 231": {"x": [null, 443], "y": [null, 12], "on": [null, 0]}}, "Contour: 11": {"Node: 316": {"x": [530, 93], "y": [-10, 188]}, "Node: 334": {"x": [634, 201], "on": [0, 1], "y": [20, 39]}, "Node: 321": {"x": [600, 109], "y": [223, 226]}, "Node: 327": {"x": [537, 214], "y": [1, 17]}, "Node: 332": {"x": [634, 205], "on": [0, 1], "y": [35, -6]}, "Node: 305": {"x": [null, 66], "y": [null, 23], "on": [null, 0]}, "Node: 306": {"x": [null, 66], "y": [null, 57], "on": [null, 1]}, "Node: 329": {"x": [594, 239], "on": [0, 1], "y": [1, 3]}, "Node: 335": {"x": [601, 194], "y": [-10, 25]}, "Node: 307": {"x": [null, 66], "y": [null, 91], "on": [null, 0]}, "Node: 328": {"x": [570, 221], "on": [1, 0], "y": [1, 3]}, "Node: 313": {"x": [null, 182], "y": [null, 216], "on": [null, 0]}, "Node: 312": {"x": [null, 202], "y": [null, 181], "on": [null, 0]}, "Node: 319": {"x": [484, 84], "on": [0, 1], "y": [223, 183]}, "Node: 326": {"x": [495, 214], "on": [0, 1], "y": [56, 41]}, "Node: 303": {"x": [null, 126], "y": [null, -10], "on": [null, 1]}, "Node: 308": {"x": [null, 114], "y": [null, 122], "on": [null, 0]}, "Node: 324": {"x": [641, 214], "on": [1, 0], "y": [111, 190]}, "Node: 311": {"x": [null, 202], "y": [null, 153], "on": [null, 1]}, "Node: 315": {"x": [569, 114], "on": [1, 0], "y": [-10, 216]}, "Node: 322": {"x": [641, 146], "on": [0, 1], "y": [167, 226]}, "Node: 310": {"x": [null, 202], "y": [null, 125], "on": [null, 1]}, "Node: 330": {"x": [623, 242], "on": [0, 1], "y": [22, 3]}, "Node: 325": {"x": [496, 214], "y": [111, 160]}, "Node: 336": {"x": [null, 158], "y": [null, -10], "on": [null, 0]}, "Node: 318": {"x": [484, 84], "on": [1, 0], "y": [105, 163]}, "Node: 304": {"x": [null, 101], "y": [null, -10], "on": [null, 0]}, "Node: 320": {"x": [565, 84], "on": [1, 0], "y": [223, 197]}, "Node: 331": {"x": [630, 242], "y": [38, -6]}, "Node: 333": {"x": [634, 202], "y": [30, 39]}, "Node: 323": {"x": [641, 184], "on": [1, 0], "y": [117, 226]}, "Node: 309": {"x": [null, 166], "y": [null, 124], "on": [null, 1]}, "Node: 314": {"x": [null, 146], "y": [null, 216], "on": [null, 1]}, "Node: 317": {"x": [484, 93], "on": [0, 1], "y": [50, 163]}}, "Contour: 14": {"Node: 389": {"x": [78, null], "y": [34, null], "on": [0, null]}, "Node: 386": {"x": [115, null], "y": [113, null], "on": [0, null]}, "Node: 383": {"x": [202, null], "y": [67, null], "on": [1, null]}, "Node: 380": {"x": [128, null], "y": [1, null], "on": [1, null]}, "Node: 390": {"x": [101, null], "y": [1, null], "on": [0, null]}, "Node: 366": {"x": [null, 160], "y": [null, 1], "on": [null, 0]}, "Node: 372": {"x": [null, 78], "y": [null, 82], "on": [null, 0]}, "Node: 381": {"x": [160, null], "y": [1, null], "on": [0, null]}, "Node: 367": {"x": [null, 202], "y": [null, 46], "on": [null, 0]}, "Node: 370": {"x": [null, 165], "y": [null, 114], "on": [null, 1]}, "Node: 385": {"x": [165, null], "y": [114, null], "on": [1, null]}, "Node: 371": {"x": [null, 115], "y": [null, 113], "on": [null, 0]}, "Node: 369": {"x": [null, 202], "y": [null, 115], "on": [null, 1]}, "Node: 373": {"x": [null, 78], "y": [null, 56], "on": [null, 1]}, "Node: 368": {"x": [null, 202], "y": [null, 67], "on": [null, 1]}, "Node: 382": {"x": [202, null], "y": [46, null], "on": [0, null]}, "Node: 388": {"x": [78, null], "y": [56, null], "on": [1, null]}, "Node: 365": {"x": [null, 128], "y": [null, 1], "on": [null, 1]}, "Node: 384": {"x": [202, null], "y": [115, null], "on": [1, null]}, "Node: 375": {"x": [null, 101], "y": [null, 1], "on": [null, 0]}, "Node: 374": {"x": [null, 78], "y": [null, 34], "on": [null, 0]}, "Node: 387": {"x": [78, null], "y": [82, null], "on": [0, null]}}, "Contour: 12": {"Node: 351": {"x": [null, 594], "y": [null, 1], "on": [null, 0]}, "Node: 352": {"x": [null, 623], "y": [null, 22], "on": [null, 0]}, "Node: 336": {"x": [629, null], "y": [121, null], "on": [1, null]}, "Node: 348": {"x": [null, 495], "y": [null, 56], "on": [null, 0]}, "Node: 350": {"x": [null, 570], "y": [null, 1], "on": [null, 1]}, "Node: 357": {"x": [null, 601], "y": [null, -10], "on": [null, 0]}, "Node: 354": {"x": [null, 634], "y": [null, 35], "on": [null, 0]}, "Node: 347": {"x": [null, 496], "y": [null, 111], "on": [null, 1]}, "Node: 346": {"x": [null, 641], "y": [null, 111], "on": [null, 1]}, "Node: 343": {"x": [null, 600], "y": [null, 223], "on": [null, 0]}, "Node: 353": {"x": [null, 630], "y": [null, 38], "on": [null, 1]}, "Node: 342": {"x": [497, 565], "y": [121, 223]}, "Node: 339": {"x": [565, 484], "on": [1, 0], "y": [212, 50]}, "Node: 337": {"x": [628, 569], "on": [0, 1], "y": [162, -10]}, "Node: 340": {"x": [530, 484], "on": [0, 1], "y": [212, 105]}, "Node: 355": {"x": [null, 634], "y": [null, 30], "on": [null, 1]}, "Node: 356": {"x": [null, 634], "y": [null, 20], "on": [null, 0]}, "Node: 345": {"x": [null, 641], "y": [null, 117], "on": [null, 1]}, "Node: 341": {"x": [499, 484], "y": [163, 223]}, "Node: 349": {"x": [null, 537], "y": [null, 1], "on": [null, 0]}, "Node: 344": {"x": [null, 641], "y": [null, 167], "on": [null, 0]}, "Node: 338": {"x": [596, 530], "y": [212, -10]}}, "Contour: 10": {"Node: 273": {"x": [null, 791], "y": [null, 31], "on": [null, 0]}, "Node: 278": {"x": [null, 713], "y": [null, 122], "on": [null, 0]}, "Node: 282": {"x": [null, 716], "y": [null, 226], "on": [null, 0]}, "Node: 286": {"x": [null, 797], "y": [null, 185], "on": [null, 1]}, "Node: 294": {"x": [null, 696], "y": [null, 175], "on": [null, 1]}, "Node: 281": {"x": [null, 684], "y": [null, 198], "on": [null, 0]}, "Node: 269": {"x": [null, 689], "y": [null, 28], "on": [null, 0]}, "Node: 302": {"x": [null, 768], "y": [null, -10], "on": [null, 0]}, "Node: 276": {"x": [null, 776], "y": [null, 89], "on": [null, 0]}, "Node: 279": {"x": [null, 684], "y": [null, 152], "on": [null, 0]}, "Node: 305": {"x": [793, null], "y": [570, null], "on": [0, null]}, "Node: 306": {"x": [788, null], "y": [575, null], "on": [0, null]}, "Node: 297": {"x": [null, 751], "y": [null, 115], "on": [null, 1]}, "Node: 307": {"x": [788, null], "y": [584, null], "on": [1, null]}, "Node: 300": {"x": [null, 803], "y": [null, 50], "on": [null, 1]}, "Node: 285": {"x": [null, 797], "y": [null, 199], "on": [null, 0]}, "Node: 313": {"x": [805, null], "y": [575, null], "on": [0, null]}, "Node: 312": {"x": [805, null], "y": [584, null], "on": [1, null]}, "Node: 277": {"x": [null, 750], "y": [null, 102], "on": [null, 1]}, "Node: 288": {"x": [null, 788], "y": [null, 168], "on": [null, 1]}, "Node: 270": {"x": [null, 709], "y": [null, 1], "on": [null, 0]}, "Node: 274": {"x": [null, 791], "y": [null, 51], "on": [null, 1]}, "Node: 308": {"x": [788, null], "y": [592, null], "on": [0, null]}, "Node: 265": {"x": [null, 680], "y": [null, 21], "on": [null, 0]}, "Node: 283": {"x": [null, 743], "y": [null, 226], "on": [null, 1]}, "Node: 311": {"x": [805, null], "y": [599, null], "on": [0, null]}, "Node: 275": {"x": [null, 791], "y": [null, 66], "on": [null, 0]}, "Node: 310": {"x": [797, null], "y": [599, null], "on": [1, null]}, "Node: 272": {"x": [null, 765], "y": [null, 1], "on": [null, 0]}, "Node: 284": {"x": [null, 772], "y": [null, 226], "on": [null, 0]}, "Node: 280": {"x": [null, 684], "y": [null, 175], "on": [null, 1]}, "Node: 296": {"x": [null, 725], "y": [null, 129], "on": [null, 0]}, "Node: 263": {"x": [null, 740], "y": [null, -10], "on": [null, 1]}, "Node: 304": {"x": [797, null], "y": [570, null], "on": [1, null]}, "Node: 298": {"x": [null, 783], "y": [null, 99], "on": [null, 0]}, "Node: 271": {"x": [null, 740], "y": [null, 1], "on": [null, 1]}, "Node: 287": {"x": [null, 797], "y": [null, 168], "on": [null, 0]}, "Node: 266": {"x": [null, 680], "y": [null, 35], "on": [null, 1]}, "Node: 290": {"x": [null, 764], "y": [null, 216], "on": [null, 0]}, "Node: 267": {"x": [null, 680], "y": [null, 53], "on": [null, 0]}, "Node: 264": {"x": [null, 704], "y": [null, -10], "on": [null, 0]}, "Node: 291": {"x": [null, 742], "y": [null, 216], "on": [null, 1]}, "Node: 289": {"x": [null, 788], "y": [null, 195], "on": [null, 0]}, "Node: 292": {"x": [null, 719], "y": [null, 216], "on": [null, 0]}, "Node: 299": {"x": [null, 803], "y": [null, 70], "on": [null, 0]}, "Node: 309": {"x": [793, null], "y": [599, null], "on": [0, null]}, "Node: 301": {"x": [null, 803], "y": [null, 23], "on": [null, 0]}, "Node: 314": {"x": [801, null], "y": [570, null], "on": [0, null]}, "Node: 268": {"x": [null, 689], "y": [null, 53], "on": [null, 1]}, "Node: 295": {"x": [null, 696], "y": [null, 155], "on": [null, 0]}, "Node: 293": {"x": [null, 696], "y": [null, 192], "on": [null, 0]}}, "Contour: 1": {"Node: 37": {"x": [852, null], "y": [210, null], "on": [1, null]}, "Node: 29": {"x": [876, null], "y": [2, null], "on": [0, null]}, "Node: 35": {"x": [837, null], "y": [202, null], "on": [0, null]}, "Node: 51": {"x": [913, 805], "y": [12, 575]}, "Node: 52": {"x": [919, 801], "on": [1, 0], "y": [13, 570]}, "Node: 54": {"x": [913, null], "y": [3, null], "on": [0, null]}, "Node: 31": {"x": [858, null], "y": [58, null], "on": [1, null]}, "Node: 36": {"x": [849, null], "y": [206, null], "on": [0, null]}, "Node: 48": {"x": [882, 797], "on": [0, 1], "y": [11, 599]}, "Node: 53": {"x": [919, null], "y": [4, null], "on": [1, null]}, "Node: 45": {"x": [869, 788], "on": [1, 0], "y": [195, 575]}, "Node: 49": {"x": [898, 805], "on": [1, 0], "y": [11, 599]}, "Node: 44": {"x": [916, 793], "on": [1, 0], "y": [195, 570]}, "Node: 39": {"x": [861, null], "y": [231, null], "on": [0, null]}, "Node: 38": {"x": [856, null], "y": [213, null], "on": [0, null]}, "Node: 41": {"x": [869, null], "y": [249, null], "on": [1, null]}, "Node: 43": {"x": [916, 797], "y": [204, 570]}, "Node: 34": {"x": [829, null], "y": [202, null], "on": [1, null]}, "Node: 55": {"x": [903, null], "y": [2, null], "on": [0, null]}, "Node: 42": {"x": [869, null], "y": [204, null], "on": [1, null]}, "Node: 33": {"x": [829, null], "y": [195, null], "on": [1, null]}, "Node: 30": {"x": [858, null], "y": [27, null], "on": [0, null]}, "Node: 32": {"x": [858, null], "y": [195, null], "on": [1, null]}, "Node: 47": {"x": [869, 788], "y": [31, 599]}, "Node: 50": {"x": [904, 805], "on": [0, 1], "y": [11, 584]}, "Node: 46": {"x": [869, 788], "y": [55, 584]}, "Node: 28": {"x": [898, null], "y": [2, null], "on": [1, null]}, "Node: 40": {"x": [861, null], "y": [249, null], "on": [1, null]}}, "Contour: 5": {"Node: 197": {"x": [504, null], "y": [526, null], "on": [1, null]}, "Node: 151": {"x": [null, 608], "y": [null, 538], "on": [null, 1]}, "Node: 132": {"x": [null, 573], "y": [null, 325], "on": [null, 0]}, "Node: 137": {"x": [null, 559], "y": [null, 360], "on": [null, 0]}, "Node: 134": {"x": [null, 551], "y": [null, 366], "on": [null, 1]}, "Node: 144": {"x": [null, 637], "y": [null, 414], "on": [null, 0]}, "Node: 142": {"x": [null, 651], "y": [null, 380], "on": [null, 1]}, "Node: 155": {"x": [null, 656], "y": [null, 485], "on": [null, 0]}, "Node: 193": {"x": [486, null], "y": [519, null], "on": [0, null]}, "Node: 160": {"x": [null, 586], "y": [null, 529], "on": [null, 0]}, "Node: 162": {"x": [null, 565], "y": [null, 492], "on": [null, 1]}, "Node: 149": {"x": [null, 554], "y": [null, 512], "on": [null, 0]}, "Node: 198": {"x": [504, null], "y": [368, null], "on": [1, null]}, "Node: 154": {"x": [null, 656], "y": [null, 501], "on": [null, 1]}, "Node: 158": {"x": [null, 627], "y": [null, 529], "on": [null, 0]}, "Node: 191": {"x": [494, null], "y": [491, null], "on": [1, null]}, "Node: 131": {"x": [null, 605], "y": [null, 325], "on": [null, 1]}, "Node: 168": {"x": [null, 662], "y": [null, 379], "on": [null, 1]}, "Node: 189": {"x": [494, null], "y": [349, null], "on": [0, null]}, "Node: 159": {"x": [null, 607], "y": [null, 529], "on": [null, 1]}, "Node: 185": {"x": [455, null], "y": [334, null], "on": [1, null]}, "Node: 203": {"x": [542, null], "y": [334, null], "on": [1, null]}, "Node: 141": {"x": [null, 651], "y": [null, 362], "on": [null, 0]}, "Node: 166": {"x": [null, 644], "y": [null, 423], "on": [null, 0]}, "Node: 195": {"x": [463, null], "y": [519, null], "on": [1, null]}, "Node: 202": {"x": [542, null], "y": [341, null], "on": [1, null]}, "Node: 135": {"x": [null, 551], "y": [null, 382], "on": [null, 0]}, "Node: 139": {"x": [null, 605], "y": [null, 335], "on": [null, 1]}, "Node: 145": {"x": [null, 614], "y": [null, 426], "on": [null, 1]}, "Node: 153": {"x": [null, 656], "y": [null, 514], "on": [null, 0]}, "Node: 156": {"x": [null, 648], "y": [null, 485], "on": [null, 1]}, "Node: 143": {"x": [null, 651], "y": [null, 394], "on": [null, 0]}, "Node: 146": {"x": [null, 580], "y": [null, 444], "on": [null, 0]}, "Node: 186": {"x": [455, null], "y": [341, null], "on": [1, null]}, "Node: 161": {"x": [null, 565], "y": [null, 507], "on": [null, 0]}, "Node: 199": {"x": [504, null], "y": [349, null], "on": [0, null]}, "Node: 147": {"x": [null, 554], "y": [null, 471], "on": [null, 0]}, "Node: 200": {"x": [512, null], "y": [341, null], "on": [0, null]}, "Node: 190": {"x": [494, null], "y": [368, null], "on": [1, null]}, "Node: 194": {"x": [470, null], "y": [519, null], "on": [1, null]}, "Node: 167": {"x": [null, 662], "y": [null, 397], "on": [null, 0]}, "Node: 187": {"x": [466, null], "y": [341, null], "on": [1, null]}, "Node: 196": {"x": [463, null], "y": [526, null], "on": [1, null]}, "Node: 192": {"x": [494, null], "y": [511, null], "on": [0, null]}, "Node: 164": {"x": [null, 591], "y": [null, 450], "on": [null, 0]}, "Node: 152": {"x": [null, 634], "y": [null, 538], "on": [null, 0]}, "Node: 157": {"x": [null, 648], "y": [null, 510], "on": [null, 0]}, "Node: 169": {"x": [null, 662], "y": [null, 355], "on": [null, 0]}, "Node: 163": {"x": [null, 565], "y": [null, 473], "on": [null, 0]}, "Node: 150": {"x": [null, 583], "y": [null, 538], "on": [null, 0]}, "Node: 170": {"x": [null, 630], "y": [null, 325], "on": [null, 0]}, "Node: 148": {"x": [null, 554], "y": [null, 492], "on": [null, 1]}, "Node: 188": {"x": [485, null], "y": [341, null], "on": [0, null]}, "Node: 138": {"x": [null, 577], "y": [null, 335], "on": [null, 0]}, "Node: 140": {"x": [null, 628], "y": [null, 335], "on": [null, 0]}, "Node: 133": {"x": [null, 551], "y": [null, 353], "on": [null, 0]}, "Node: 201": {"x": [531, null], "y": [341, null], "on": [1, null]}, "Node: 165": {"x": [null, 615], "y": [null, 438], "on": [null, 1]}, "Node: 136": {"x": [null, 559], "y": [null, 382], "on": [null, 1]}}, "Contour: 0": {"Node: 3": {"x": [388, 265], "on": [1, 0], "y": [58, 337]}, "Node: 10": {"x": [386, 240], "on": [0, 1], "y": [213, 599]}, "Node: 27": {"x": [433, 430], "on": [0, 1], "y": [2, 337]}, "Node: 14": {"x": [399, 283], "on": [1, 0], "y": [204, 501]}, "Node: 16": {"x": [446, 282], "y": [195, 488]}, "Node: 4": {"x": [388, 273], "on": [1, 0], "y": [195, 345]}, "Node: 9": {"x": [382, 249], "y": [210, 599]}, "Node: 22": {"x": [434, 403], "y": [11, 497]}, "Node: 2": {"x": [388, 245], "on": [0, 1], "y": [27, 337]}, "Node: 13": {"x": [399, 283], "y": [249, 505]}, "Node: 15": {"x": [446, 283], "on": [1, 0], "y": [204, 491]}, "Node: 41": {"x": [null, 318], "y": [null, 337], "on": [null, 1]}, "Node: 34": {"x": [null, 317], "y": [null, 518], "on": [null, 0]}, "Node: 42": {"x": [null, 318], "y": [null, 330], "on": [null, 1]}, "Node: 12": {"x": [391, 283], "y": [249, 606]}, "Node: 30": {"x": [null, 393], "y": [null, 330], "on": [null, 1]}, "Node: 33": {"x": [null, 344], "y": [null, 518], "on": [null, 1]}, "Node: 32": {"x": [null, 393], "y": [null, 518], "on": [null, 0]}, "Node: 23": {"x": [443, 403], "on": [0, 1], "y": [12, 462]}, "Node: 28": {"x": [null, 437], "y": [null, 337], "on": [null, 1]}, "Node: 18": {"x": [399, 288], "on": [1, 0], "y": [55, 502]}, "Node: 40": {"x": [null, 311], "y": [null, 337], "on": [null, 1]}, "Node: 1": {"x": [406, 236], "on": [0, 1], "y": [2, 337]}, "Node: 37": {"x": [null, 283], "y": [null, 364], "on": [null, 1]}, "Node: 0": {"x": [428, 236], "y": [2, 330]}, "Node: 29": {"x": [null, 437], "y": [null, 330], "on": [null, 1]}, "Node: 35": {"x": [null, 283], "y": [null, 486], "on": [null, 0]}, "Node: 31": {"x": [null, 393], "y": [null, 461], "on": [null, 1]}, "Node: 36": {"x": [null, 283], "y": [null, 451], "on": [null, 1]}, "Node: 11": {"x": [391, 240], "on": [0, 1], "y": [231, 606]}, "Node: 26": {"x": [443, 411], "y": [3, 337]}, "Node: 6": {"x": [359, 273], "y": [202, 571]}, "Node: 39": {"x": [null, 292], "y": [null, 337], "on": [null, 0]}, "Node: 20": {"x": [412, 344], "on": [0, 1], "y": [11, 527]}, "Node: 38": {"x": [null, 283], "y": [null, 345], "on": [null, 0]}, "Node: 19": {"x": [399, 316], "y": [31, 527]}, "Node: 17": {"x": [399, 283], "y": [195, 488]}, "Node: 21": {"x": [428, 373], "on": [1, 0], "y": [11, 527]}, "Node: 25": {"x": [449, 403], "on": [1, 0], "y": [4, 345]}, "Node: 8": {"x": [379, 266], "y": [206, 599]}, "Node: 24": {"x": [449, 403], "y": [13, 364]}, "Node: 7": {"x": [367, 273], "y": [202, 591]}, "Node: 5": {"x": [359, 273], "y": [195, 364]}}}}}, "HVAR": {"tableTag": ["HVAR", null], "table": {"Version": [65536, null], "VarStore": {"Format": [1, null], "VarRegionList": {"RegionAxisCount": [1, null], "RegionCount": [1, null], "Region": {"0": {"VarRegionAxis": {"0": {"StartCoord": [0.0, null], "PeakCoord": [1.0, null], "EndCoord": [1.0, null]}}}}}, "VarDataCount": [1, null], "VarData": {"0": {"ItemCount": [3, null], "NumShorts": [0, null], "VarRegionCount": [1, null], "VarRegionIndex": {"0": [0, null]}, "Item": {"0": {"0": [0, null]}, "1": {"0": [0, null]}, "2": {"0": [114, null]}}}}}}}, "gvar": {"tableTag": ["gvar", null], "version": [1, null], "reserved": [0, null], "axisCount": [1, null], "sharedTupleCount": [0, null], "offsetToSharedTuples": [28, null], "glyphCount": [3, null], "flags": [0, null], "offsetToGlyphVariationData": [28, null]}, "hhea": {"caretSlopeRise": [1, 1000]}, "fvar": {"axes": {"wght": {"minValue": [400.0, null], "maxValue": [700.0, null], "defaultValue": [400.0, null], "axisName": ["Weight", null]}}, "instances": {"Regular": {"coordinates": {"wght": [400.0, null]}, "flags": [0, null]}, "Medium": {"coordinates": {"wght": [500.0, null]}, "flags": [0, null]}, "SemiBold": {"coordinates": {"wght": [600.0, null]}, "flags": [0, null]}, "Bold": {"coordinates": {"wght": [700.0, null]}, "flags": [0, null]}}}};</script>
+
+    </div>
+</body>
+	<script>
+
+	POSITION = "old"
+	fontToggle = document.getElementById("font-toggle")
+	function switchFonts() {
+	boxTitles = document.getElementsByClassName("box-title")
+	items = document.getElementsByClassName("box-text");
+	  
+	if (POSITION === "old") {
+	  POSITION = "new"
+	  for (item of boxTitles) {
+	    item.textContent = item.textContent.replace("old", "new")
+	    fontToggle.textContent = "new"
+	  }
+	  for (item of items) {
+		item.className = item.className.replace("old", "new")
+	  }
+
+	  } else {
+	  POSITION = "old"
+	  for (item of boxTitles) {
+	    item.textContent = item.textContent.replace("new", "old")
+	    fontToggle.textContent = "old"
+	  }
+	  for (item of items) {
+		item.className = item.className.replace("new", "old")
+	  }
+	}
+	}
+	if (fontToggle !== null) {
+		fontToggle.addEventListener("click", switchFonts);
+	}
+
+// apply optional ot feats
+
+function buildFeatureList() {
+	var features = [
+		'aalt', 'c2sc', 'calt', 'case', 'cpsp', 'dlig', 'dnom',
+		'fina', 'frac', 'init', 'kern', 'liga', 'lnum', 'numr', 'onum',
+		'ordn', 'pnum', 'salt', 'sinf', 'smcp', 'sups',
+		'swsh', 'titl', 'tnum', 'zero', 'ss01', 'ss02',
+		'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08',
+		'ss09', 'ss10', 'ss11', 'ss12', 'ss13', 'ss14',
+		'ss15', 'ss16', 'ss17', 'ss18', 'ss19', 'ss20'
+	]
+	
+	var otPanel = document.getElementById("ot-panel")
+	for (i=0; i<features.length; i++) {
+		var feat = features[i]
+		
+		var row = document.createElement("div");
+
+		var item = document.createElement("input");
+		item.type = "checkbox"
+		item.value = feat
+		item.classList.add("ot-checkbox")
+		var label = document.createElement("label")
+		label.textContent = feat
+
+		row.appendChild(item)
+		row.appendChild(label)
+
+		otPanel.appendChild(row)
+	}
+}
+
+buildFeatureList()
+
+
+function enableFeatures() {
+	var checkboxes = document.getElementsByClassName("ot-checkbox")
+	var res = []
+	var disableKerning = false
+	for (i=0; i<checkboxes.length; i++) {
+		if (checkboxes[i].checked === true) {
+			var checkbox = checkboxes[i]
+			res.push('"' + checkbox.value + '"')
+
+			if (checkbox.value === "kern") {
+				disableKerning = true
+			}
+		}
+	}	
+
+	var boxText = document.getElementsByClassName("box-text")
+	var otString = res.join(", ")
+	for (j=0; j<boxText.length; j++) {
+		boxText[j].style.fontFeatureSettings = otString
+		if (disableKerning === true) {
+			boxText[j].style.fontKerning = "none"
+		}
+	}
+}
+
+var otButton = document.getElementById("ot-button")
+otButton.addEventListener("click", function() {
+    otPanel = document.getElementById("ot-panel")
+    if (otPanel.style.display !== "block") {
+        otPanel.style.display = "block"
+    } else {
+        otPanel.style.display = "none"
+    }
+})
+var checkboxes = document.getElementsByClassName("ot-checkbox")
+for (i=0; i<checkboxes.length; i++) {
+	cb = checkboxes[i]
+	cb.addEventListener("click", enableFeatures)
+}	
+    
+  class Table {
+      constructor(data) {
+          this.data = {"root": data}
+          this.open("root")
+      }
+
+      createNode(key, label) {
+          let childElem = document.createElement("div")
+          let childKey = key
+          childElem.dataset.path = childKey
+          childElem.dataset.open = "0"
+          childElem.innerHTML = label
+          childElem.classList.add("node")
+          return childElem
+      }
+
+      close(key) {
+          let htmlParent = document.querySelector(`[data-path="${key}"]`)
+          let label = htmlParent.childNodes[0].nodeValue
+          htmlParent.replaceChildren()
+          htmlParent.textContent = label
+          htmlParent.dataset.open = "0"
+      }
+
+      open(key) {
+          let htmlParent = document.querySelector(`[data-path="${key}"]`)
+          htmlParent.dataset.open = "1"
+
+          // traverse to correct data level based on data-path
+          let path = key.split(".")
+          let data = this.data
+          for (var i=0; i<path.length; i++) {
+              data = data[path[i]];
+
+          }
+
+          // arrays containing two values are used as leaf nodes.
+          // The first item is the before value and the second
+          // is for after value.
+          if (Array.isArray(data)) {
+              let childElem = this.createNode("", "")
+              let before = document.createElement("span")
+              before.classList.add("attr-before")
+              before.textContent = String(data[0]) + " "
+              let after = document.createElement("span")
+              after.classList.add("attr-after")
+              after.textContent = String(data[1])
+              childElem.appendChild(before)
+              childElem.appendChild(after)
+              htmlParent.appendChild(childElem)
+              return
+          }
+          // Create next child nodes
+          for (var i in data) {
+              let childKey = key + "." + i
+              let childElem = this.createNode(childKey, i)
+              htmlParent.appendChild(childElem);
+              var that = this
+
+              // Toggle whether to open or close a node
+              childElem.addEventListener("click", function() {
+                  if (this.dataset.open === "0") {
+                      that.open(childKey)
+                      event.stopPropagation()
+                  } else {
+                      that.close(childKey)
+                      event.stopPropagation()
+                  }
+              })
+          }
+      }
+  }
+
+  let t = new Table(fontdiff, document.getElementById("difftable"))
+
+
+function wordBreaks() {
+  words = document.getElementsByClassName("cell-word")
+  res = []
+  prevTop = 0
+  for (i=0; i<words.length; i++) {
+      var word = words[i]
+      currentTop = word.getBoundingClientRect().top
+      if (currentTop > prevTop) {
+          res.push(i)
+      }
+      prevTop = currentTop
+  }
+  return res
+}
+
+async function insertBreaks() {
+  switchFonts()
+  await sleep(1)
+  breaksBefore = wordBreaks()
+  switchFonts()
+  await sleep(1)
+  breaksAfter = wordBreaks()
+
+
+  console.log(breaksBefore.length, breaksAfter.length)
+
+  if (breaksBefore.length >= breaksAfter.length) {
+    breaks = breaksBefore
+  } else {
+    breaks = breaksAfter
+  }
+
+  words = document.getElementsByClassName("cell-word")
+  breaks.forEach(function(i) {
+    if (i != 0) {
+      i = i
+    }
+    word = words[i]
+    spacer = document.createElement("div")
+    spacer.className = "spacer"
+    word.parentNode.insertBefore(spacer, word)
+  })
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+  
+insertBreaks()
+
+
+    </script>
+</html>
