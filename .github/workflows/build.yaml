@@ -4,6 +4,7 @@ on: push
 
 jobs:
   build_font:
+    uses: notofonts/install-diffenator3@main
     uses: notofonts/notobuilder/.github/workflows/build.yaml@main
     secrets: inherit
 
